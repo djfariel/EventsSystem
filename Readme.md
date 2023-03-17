@@ -1,7 +1,10 @@
 ## EventSystem
 Game event saving system for C# games. Probably most useful in Unity games, but can be used anywhere.
+
 The general philosophy of this tool is that each event is unique. However, sometimes events can be really similar. For example, opening a chest can be a really repetitive event, and just naming your event key `openedChest` wouldn't be useful for very long at all. There are two features to help with this.
+
 First, all events can be optionally namespaced. Every function has an optional namespace parameter that allows you to bucket events however you decide. For example, if you have one chest in each location, there are now two ways to handle this. You can have individual keys, like `openedChestForest` and `openedChestCastle`, or you can lean on the namespacing feature and continue to use `openedChest` in the `forest` and `castle` namespaces. The namespacing feature should be transparent and entirely optional, but it can be a powerful tool if needed.
+
 Second, not all events are true or false. For example, you may record that the player found a specific `chicken feather` item, but may also want to know how many in total have been collected. To help with this, every event is saved as an integer. When you save an event, its value internally is increased from 0 to 1. Every additional time you save it, the value will increase by 1. There are also functions to increase by more than one, decrease, and set a specific value; just in case.
 ## Quick Use
  - Create an instance of `EventsStore`. This reference can follow a singleton pattern, just make sure you clean up your data responsibly.
